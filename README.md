@@ -4,7 +4,7 @@ A console-based ordering application that lets customers fully customize tacos, 
 
 TACO-licious is a point-of-sale system built to modernize and streamline the ordering workflow at a taco shop. Instead of handwritten orders or confusing verbal communication, customers are guided interactively through each step of building a complete, accurate order.
 
-The system walks the user through customizing tacos, selecting sides and drinks, reviewing the full order, and finalizing the purchase. All receipts are saved to disk using a timestamp-based filename for easy organization.
+The system walks the user through customizing tacos, selecting sides and drinks, reviewing the full order, and finalizing the purchase. All receipts are saved to reciept fodler using a timestamp-based filename for easy organization.
 
 This project highlights Object-Oriented Programming, clean separation of responsibilities, and a modular, extensible design that aligns with the assignment’s technical requirements.
 
