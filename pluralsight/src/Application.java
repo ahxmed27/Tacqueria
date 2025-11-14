@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
 
     public static Scanner console = new Scanner(System.in);
+
+    private static ArrayList<Item> itemCart = new ArrayList<>();
 
     public static void main(String[] args) {
         boolean exit = false;
@@ -42,9 +45,46 @@ public class Application {
         switch(choice){
             case "1":
                 tacoLogic();
+            case "2":
+                drinkLogic();
+
             default:
                 System.out.println("Invalid input try again");
 
+        }
+
+    }
+
+    private static void drinkLogic() {
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("Select your drink size:");
+            System.out.println(" 1) Small - $2.00");
+            System.out.println(" 2) Medium - $2.50");
+            System.out.println(" 3) Large - $3.00");
+            int choice = console.nextInt();
+            console.nextLine();
+            String input = "";
+            switch(choice){
+                case 1:
+                    input = "Small";
+                    exit = true;
+                    break;
+                case 2:
+                input = "Medium";
+                    exit = true;
+                break;
+
+                case 3:
+                input = "Large";
+                    exit = true;
+                break;
+                default:
+                    System.out.println("Invalid input. Try Again!");
+                    orderMenu();
+            }
+            Drinks drink = new Drinks(input);
+            itemCart.add(drink);
         }
 
     }
@@ -152,8 +192,7 @@ public class Application {
                     throw new IllegalArgumentException("Invalid fried choice!");
                 }
 
-                System.out.println(taco.toString());
-                exit = true;
+                itemCart.add(taco);
 
             } catch (Exception e) {
                 System.out.println("Invalid input! Please try again.");
