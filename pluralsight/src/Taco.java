@@ -17,12 +17,13 @@ public class Taco extends Item {
         BURRITO
     }
 
+    private final Shell shell;
 
-    private Shell shell;
-
-    private Size size;
+    private final Size size;
 
     private String meat;
+
+    private String cheese;
 
     private final HashMap<Integer, String> listOfToppings = new HashMap<>();
 
@@ -36,22 +37,26 @@ public class Taco extends Item {
 
     private boolean isFried;
 
-    Taco(Shell shell, Size size){
+    private boolean extraCheese;
+
+    Taco(Shell shell, Size size) {
         super("Taco");
         this.shell = shell;
         this.size = size;
         isFried = false;
         extraMeat = false;
+        extraCheese = false;
         initializeMenu();
     }
 
-    public void addToppings(int x){
+    public void addToppings(int x) {
         toppings.add(listOfToppings.get(x));
     }
 
-    public void addSauce(int x){
+    public void addSauce(int x) {
         sauces.add(listOfSauces.get(x));
     }
+
     public String getMeat() {
         return meat;
     }
@@ -60,13 +65,22 @@ public class Taco extends Item {
         this.meat = meat;
     }
 
+    public void setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
+    }
+
     public boolean isExtraMeat() {
         return extraMeat;
+    }
+
+    public String getCheese() {
+        return cheese;
     }
 
     public void setExtraMeat(boolean extraMeat) {
         this.extraMeat = extraMeat;
     }
+
     private void initializeMenu() {
         listOfToppings.put(1, "Lettuce");
         listOfToppings.put(2, "Cilantro");
@@ -85,23 +99,22 @@ public class Taco extends Item {
         listOfSauces.put(5, "Mild");
         listOfSauces.put(6, "Extra Hot");
     }
+
     public void setIsFried(boolean x) {
         isFried = x;
     }
 
-    public void setFried(boolean fried) {
-        isFried = fried;
+    public void setCheese(String cheese) {
+        this.cheese = cheese;
+    }
 
-        }
-
-
-    public String toString(){
+    public String toString() {
         StringBuilder reciept = new StringBuilder();
         reciept.append("=== Taco Details ===\n");
         reciept.append("Shell: " + shell + "\n");
         reciept.append("Size: " + size + "\n");
         reciept.append("Meat: " + meat + "\n");
-        if(extraMeat){
+        if (extraMeat) {
             reciept.append("Extra Meat Ordered! \n");
         }
         reciept.append("Fried: ").append(isFried ? "Yes + \n" : "No + \n");
@@ -125,7 +138,34 @@ public class Taco extends Item {
         return reciept.toString();
     }
 
-    protected double getPrice(){
-        return 0.00;
+    public double getPrice() {
+        double price = 0;
+        if (size == Size.SINGLE) {
+            price += 3.50 + 1.00 + .75;
+            if(extraMeat){
+                price += .50;
+            }
+            if(extraCheese){
+                price += .30;
+            }
+        } else if (size == Size.THREE_TACO) {
+            price += 9.00 + 2.00 + 1.50;
+            if(extraMeat){
+                price += .100;
+            }
+            if(extraCheese){
+                price += .60;
+            }
+        } else if (size == Size.BURRITO) {
+            price += 8.50 + 3.00 + 2.25;
+            if(extraMeat){
+                price += 1.50;
+            }
+            if(extraCheese){
+                price += .90;
+            }
+        }
+        return price;
+
     }
 }

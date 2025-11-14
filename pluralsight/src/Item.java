@@ -3,18 +3,18 @@ public abstract class Item {
     private String name;
 
 
-    Item(String name){
+    protected Item(String name){
         this.name = name;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
-    private void setName(String name) {
-        this.name = name;
-    }
-
     abstract double getPrice();
+
+    public String toString() {
+        return getName() + " - $" + String.format("%.2f", getPrice());
+    }
 
 }

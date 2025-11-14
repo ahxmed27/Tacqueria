@@ -45,14 +45,57 @@ public class Application {
         switch(choice){
             case "1":
                 tacoLogic();
+                break;
             case "2":
                 drinkLogic();
-
+                break;
+            case "3":
+                ChipsSalsa chips = new ChipsSalsa();
+                itemCart.add(chips);
+                System.out.println("Chips and Salsa cost $1.50");
+                System.out.println("Added Chips and Salsa to Cart!");
+                break;
+            case "4":
+                checkOut();
+                break;
+            case "0":
+                deleteOrder();
+                break;
             default:
-                System.out.println("Invalid input try again");
+                System.out.println("Invalid input Try again");
 
         }
 
+    }
+
+    private static void checkOut() {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("           🛒 YOUR CART 🛒           ");
+        System.out.println(       "╠════════════════════════════════════╣");
+
+        double price = 0.00;
+        if(itemCart.isEmpty()){
+            System.out.println("      YOUR CART IS EMPTY");
+        }
+        else{
+            for(Item x: itemCart){
+                System.out.println("     " + x.toString());
+                price += x.getPrice();
+            }
+            System.out.printf("     TOTAL CART: $%.2f%n", price);
+
+        }
+        System.out.println(       "╚════════════════════════════════════╝");
+    }
+
+    private static void deleteOrder() {
+        if(itemCart.isEmpty()){
+            System.out.println("Can't Remove Item From Empty Cart");
+        }
+        else{
+            System.out.println("Removing item: " + itemCart.get(itemCart.size() - 1).getName());
+            itemCart.remove(itemCart.size() - 1);
+        }
     }
 
     private static void drinkLogic() {
@@ -65,32 +108,35 @@ public class Application {
             int choice = console.nextInt();
             console.nextLine();
             String input = "";
-            switch(choice){
+            switch(choice) {
                 case 1:
                     input = "Small";
                     exit = true;
                     break;
                 case 2:
-                input = "Medium";
+                    input = "Medium";
                     exit = true;
-                break;
+                    break;
 
                 case 3:
-                input = "Large";
+                    input = "Large";
                     exit = true;
-                break;
+                    break;
+
                 default:
                     System.out.println("Invalid input. Try Again!");
-                    orderMenu();
+                    continue;
             }
             Drinks drink = new Drinks(input);
             itemCart.add(drink);
+            System.out.println(input + " drink added to cart!");
         }
 
     }
 
     private static void tacoLogic() {
         boolean exit = false;
+        Taco.Size size = null;
         while (!exit) {
             try {
                 shellMenu();
@@ -111,11 +157,11 @@ public class Application {
                         shell = Taco.Shell.BOWL;
                         break;
                     default:
-                        throw new IllegalArgumentException("Invalid shell choice!");
+                        System.out.println("Invalid shell choice!");
+                        continue;
                 }
 
                 sizeMenu();
-                Taco.Size size = null;
                 choice = console.nextInt();
                 console.nextLine();
                 switch (choice) {
@@ -129,7 +175,8 @@ public class Application {
                         size = Taco.Size.BURRITO;
                         break;
                     default:
-                        throw new IllegalArgumentException("Invalid size choice!");
+                        System.out.println("Invalid size choice!");
+                        continue;
                 }
 
                 Taco taco = new Taco(shell, size);
@@ -168,8 +215,31 @@ public class Application {
                         taco.setMeat("Pescado");
                         break;
                     default:
-                        throw new IllegalArgumentException("Invalid meat choice!");
+                        System.out.println("Invalid meat choice!");
+                        continue;
                 }
+
+                cheeseMenu();
+                choice = console.nextInt();
+                console.nextLine();
+                switch(choice){
+                    case 1:
+                        taco.setCheese("Queso Fresco");
+                        break;
+                    case 2:
+                        taco.setCheese("Oaxaca");
+                        break;
+                    case 3:
+                        taco.setCheese("Cotija");
+                        break;
+                    case 4:
+                        taco.setCheese("Cheddar");
+                        break;
+                    default:
+                        System.out.println("Invalid cheese choice!");
+                        continue;
+                }
+
 
                 System.out.println("Extra meat? (Y for Yes / N for No):");
                 String check = console.next();
@@ -182,6 +252,17 @@ public class Application {
                 else{
                     throw new IllegalArgumentException("Invalid extra meat choice!");
                 }
+
+                System.out.println("Extra cheese? (Y for Yes / N for No):");
+                check = console.next();
+                if (check.equalsIgnoreCase("Y")) {
+                    taco.setExtraCheese(true);
+                } else if (check.equalsIgnoreCase("N")) {
+                    taco.setExtraCheese(false);
+                } else {
+                    throw new IllegalArgumentException("Invalid extra cheese choice!");
+                }
+
                 System.out.println("Do you want it Fried? (Y for Yes / N for No):");
                 check = console.next();
                 if (check.equalsIgnoreCase("Y")) {
@@ -193,6 +274,8 @@ public class Application {
                 }
 
                 itemCart.add(taco);
+                exit = true;
+                System.out.println("Taco added to cart!");
 
             } catch (Exception e) {
                 System.out.println("Invalid input! Please try again.");
@@ -202,7 +285,13 @@ public class Application {
         }
     }
 
-
+    private static void cheeseMenu() {
+        System.out.println("Select your cheese (choose one):");
+        System.out.println(" 1) Queso Fresco");
+        System.out.println(" 2) Oaxaca");
+        System.out.println(" 3) Cotija");
+        System.out.println(" 4) Cheddar");
+    }
 
     private static void meatMenu() {
         System.out.println("Select your meat (choose one):");
