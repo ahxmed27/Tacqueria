@@ -75,3 +75,12 @@ When confirmed, a detailed receipt is generated and saved in a /receipts folder
 
 Receipt filenames follow a timestamp format for clear order tracking
 
+<img width="933" height="608" alt="Screenshot 2025-11-14 092116" src="https://github.com/user-attachments/assets/b224e88f-b15e-4e0a-9665-c733f6cc42b9" />
+
+
+
+
+
+
+
+
