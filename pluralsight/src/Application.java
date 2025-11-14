@@ -42,7 +42,6 @@ public class Application {
         System.out.println("╚══════════════════════════════════════════════╝");
         System.out.print("       👉 Enter your choice: ");
         String choice = Integer.toString(console.nextInt());
-        boolean
         switch(choice){
             case "1":
                 tacoLogic();
@@ -58,6 +57,12 @@ public class Application {
                 break;
             case "4":
                 checkOut();
+                System.out.println("Press Y for yes and N for no to create the receipt file");
+                console.nextLine();
+                choice = console.nextLine();
+                if(choice.equalsIgnoreCase("Y")){
+                    Receipt.addReceipt(itemCart);
+                }
                 break;
             case "0":
                 deleteOrder();

@@ -49,6 +49,14 @@ public class Taco extends Item {
         initializeMenu();
     }
 
+    public ArrayList<String> getToppings() {
+        return toppings;
+    }
+
+
+    public ArrayList<String> getSauces() {
+        return sauces;
+    }
     public void addToppings(int x) {
         toppings.add(listOfToppings.get(x));
     }
@@ -110,29 +118,37 @@ public class Taco extends Item {
 
     public String toString() {
         StringBuilder reciept = new StringBuilder();
-        reciept.append("=== Taco Details ===\n");
+        reciept.append("Taco Details: \n");
         reciept.append("Shell: " + shell + "\n");
         reciept.append("Size: " + size + "\n");
         reciept.append("Meat: " + meat + "\n");
         if (extraMeat) {
-            reciept.append("Extra Meat Ordered! \n");
+            reciept.append("Extra Meat Ordered. \n");
         }
-        reciept.append("Fried: ").append(isFried ? "Yes + \n" : "No + \n");
+        reciept.append("Cheese: " + cheese + "\n");
 
+        if (extraCheese) {
+            reciept.append("Extra Cheese Ordered. \n");
+        }
+        reciept.append("Fried: ").append(isFried ? "Yes" : "No");
+        reciept.append("\n");
         reciept.append("Toppings: ");
-        if (toppings.isEmpty()) {
-            reciept.append("None");
-        } else {
-            reciept.append(String.join(", ", toppings));
+        for (int i = 0; i < toppings.size(); i++) {
+            reciept.append(toppings.get(i));
+            if (i < toppings.size() - 1) {
+                reciept.append(", ");
+            }
         }
         reciept.append("\n");
-
         reciept.append("Sauces: ");
-        if (sauces.isEmpty()) {
-            reciept.append("None");
-        } else {
-            reciept.append(String.join(", ", sauces));
+        for (int i = 0; i < sauces.size(); i++) {
+            reciept.append(sauces.get(i));
+            if (i < sauces.size() - 1) {
+                reciept.append(", ");
+            }
         }
+        reciept.append("\n");
+        reciept.append("Taco Price: $" + getPrice());
         reciept.append("\n");
 
         return reciept.toString();
