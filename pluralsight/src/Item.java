@@ -1,3 +1,9 @@
+
+/**
+ * Abstract base class for all items in the POS system.
+ * Defines a name and requires subclasses to implement getPrice().
+ */
+
 public abstract class Item {
 
     private String name;

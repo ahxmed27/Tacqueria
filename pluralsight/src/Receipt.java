@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Handles saving receipts to text files.
+ * Creates a "receipts" folder if needed and writes all items from the cart with timestamps.
+ */
+
 public class Receipt {
 
     public static void addReceipt(ArrayList<Item> list){
@@ -15,8 +20,8 @@ public class Receipt {
             }
 
             LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
-            String file = "receipts/" + now.format(formatter) + ".txt";
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
+            String file = "receipts/" + now.format(format) + ".txt";
 
             FileWriter writer = new FileWriter(file);
             BufferedWriter buffer = new BufferedWriter(writer);

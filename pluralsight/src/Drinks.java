@@ -1,4 +1,9 @@
 import java.util.HashMap;
+/**
+ * Represents a Drink item with selectable sizes.
+ * Extends Item and sets price based on size (Small, Medium, Large).
+ */
+
 
 public class Drinks extends Item {
 

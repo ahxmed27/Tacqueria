@@ -1,4 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
+/**
+ * Unit tests for the Taco class.
+ * Tests toppings, sauces, meat, cheese, and price calculations for various taco configurations.
+ */
 
 public class TacoTest {
 

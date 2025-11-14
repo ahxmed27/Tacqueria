@@ -2,6 +2,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+
+/**
+ * Represents a customizable Taco item.
+ * Stores shell, size, meat, cheese, toppings, sauces, and extras.
+ * Calculates price based on size and extras, and formats details for receipts.
+ */
+
 public class Taco extends Item {
 
     public enum Shell {

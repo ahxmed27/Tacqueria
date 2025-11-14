@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+/**
+ * Main application class for the Taco POS system.
+ * Handles menus, user input, orders, cart management, and checkout.
+ * Runs the main loop and guides the user through ordering tacos, drinks, and sides.
+ */
+
+
 
 public class Application {
 
