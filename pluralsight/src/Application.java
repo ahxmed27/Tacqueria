@@ -42,6 +42,7 @@ public class Application {
         System.out.println("╚══════════════════════════════════════════════╝");
         System.out.print("       👉 Enter your choice: ");
         String choice = Integer.toString(console.nextInt());
+        boolean
         switch(choice){
             case "1":
                 tacoLogic();
